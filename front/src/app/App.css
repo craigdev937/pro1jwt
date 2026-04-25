@@ -1,0 +1,25 @@
+:root {
+    --white: oklch(100% 0.00011 271.152);
+    --pink: oklch(86.773% 0.07354 7.009);
+    --blue: oklch(75.536% 0.15349 231.667);
+    --grey: oklch(74.624% 0.01594 277.736);
+    --dark: oklch(37.799% 0.05329 277.881);
+    --coal: oklch(14.479% 0.00002 271.152);
+    --black: oklch(0% 0 0);
+}
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI";
+    background: var(--dark);
+    color: var(--white);
+}
+
+
+
+
