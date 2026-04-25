@@ -9,6 +9,13 @@ export interface IUser {
     updated_at: string
 };
 
+export interface IData {
+    success: boolean,
+    message: string,
+    count: number,
+    data: IUser[]
+};
+
 export interface AuthState {
     user: IUser | null,
     token: string | null,
