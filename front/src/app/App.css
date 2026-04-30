@@ -1,11 +1,22 @@
 :root {
     --white: oklch(100% 0.00011 271.152);
     --pink: oklch(86.773% 0.07354 7.009);
+    --red: oklch(62.793% 0.25768 29.223);
     --blue: oklch(75.536% 0.15349 231.667);
     --grey: oklch(74.624% 0.01594 277.736);
     --dark: oklch(37.799% 0.05329 277.881);
     --coal: oklch(14.479% 0.00002 271.152);
     --black: oklch(0% 0 0);
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    --card-bg: color-mix(in oklch, var(--coal) 80%, var(--dark));
+    --card-border: color-mix(in oklch, var(--blue) 18%, transparent);
+    --input-bg: color-mix(in oklch, var(--dark) 60%, var(--coal));
+    --input-border: color-mix(in oklch, var(--grey) 30%, transparent);
+    --input-border-focus: var(--blue);
 }
 
 *, *::before, *::after {
@@ -20,6 +31,83 @@ body {
     color: var(--white);
 }
 
+.page {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+    width: 6px
+}
+
+::-webkit-scrollbar-track {
+    background: var(--coal);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--blue);
+    border-radius: 3px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
+}
+
+.form-input {
+    background: var(--input-bg);
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-size: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: var(--input-border-focus);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--blue) 18%, transparent);
+}
+
+.form-input.error {
+    border-color: var(--red);
+}
+
+.form-error {
+    font-size: 0.75rem;
+    color: var(--pink);
+}
+
+.form-error::before {
+    content: "x20b3";
+}
+
+.fade-up {
+    animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 
