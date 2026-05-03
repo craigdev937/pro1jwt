@@ -8,13 +8,18 @@ import { ACT } from "../../global/AuthSlice";
 import { RSchema } from "../../validation/Schema";
 import { UAS, UAD } from "../../global/Hooks";
 import type { RType } from "../../validation/Schema";
-import { Spinner } from "../../components/spin/Spinner";
 
 export const Register = () => {
     const navigate = useNavigate();
     const dispatch = UAD();
     const isAuth = UAS((state) => state.auth.isAuth);
     const [regUser, { error, isLoading }] = UserAPI.useRegMutation();
+
+    const { register, handleSubmit, watch, 
+        formState: { errors } 
+    } = useForm<RType>({
+        resolver: zodResolver(RSchema) 
+    });
 
     if (error) {
         if ("status" in error) {
@@ -31,12 +36,11 @@ export const Register = () => {
         if (isAuth) navigate("/profile");
     }, [isAuth, navigate]);
 
-    const { register, handleSubmit, watch, 
-        formState: { errors } } = useForm<RType>({
-            resolver: zodResolver(RSchema) 
-        });
-
     const imageVal = watch("image");
+
+    const imgError = (event: React.SyntheticEvent<HTMLImageElement>) => {
+        {(event.target as HTMLImageElement).style.display = "none"}
+    };
 
     const onSubmit = async (data: RType) => {
         const res = await regUser(data).unwrap();
@@ -65,7 +69,7 @@ export const Register = () => {
 
                 <form 
                     noValidate
-                    className="auth-form auth-form--grid"
+                    className="auth-form auth-form__grid"
                     onSubmit={handleSubmit(onSubmit)}
                 >
                     <aside className="form-group">
@@ -106,7 +110,7 @@ export const Register = () => {
                             </span>} 
                     </aside>
 
-                    <aside className="form-group">
+                    <aside className="form-group auth-form__span">
                         <label 
                             htmlFor="email" 
                             className="form-label"
@@ -125,15 +129,17 @@ export const Register = () => {
                             </span>} 
                     </aside>
 
-                    <aside className="form-group">
+                    <aside className="form-group auth-form__span">
                         <label 
-                            htmlFor="password" 
+                            htmlFor="reg-password" 
                             className="form-label"
                         >
                             Password
                         </label>
                         <input 
-                            id="password" 
+                            id="reg-password" 
+                            type="password"
+                            autoComplete="new-password"
                             placeholder="Password...minimum of six characters"
                             className={`form-input${errors.password ? "error" : ""}`}
                             {...register("password")}
@@ -144,25 +150,51 @@ export const Register = () => {
                             </span>} 
                     </aside>
 
-                    <aside className="form-group">
+                    <aside className="form-group auth-form__span">
                         <label 
                             htmlFor="image" 
                             className="form-label"
                         >
-                            Profile Image URL
+                            Profile Image URL 
+                            <span className="auth-optional">(optional)</span>
                         </label>
                         <input 
                             id="image" 
+                            type="url"
                             placeholder="Profile Image"
                             className={`form-input${errors.image ? "error" : ""}`}
                             {...register("image")}
+                        />
+                        <img 
+                            alt="preview"
+                            src={imageVal}
+                            className="auth-img-preview"
+                            onError={() => imgError}
                         />
                         {errors.last && 
                             <span className="form-error">
                                 {errors.image?.message}
                             </span>} 
                     </aside>
+
+                    <button 
+                    type="submit"
+                    disabled={isLoading}
+                    className="btn--primary"
+                >
+                    {isLoading ? "Creating account..." : "Create Account"}
+                </button>
                 </form>
+
+                <p className="auth-card__footer">
+                    Already have an account?
+                    <Link 
+                        to={"/login"}
+                        className="auth-card__link"
+                    >
+                        Sign In
+                    </Link>
+                </p>
             </section>
         </main>
     );

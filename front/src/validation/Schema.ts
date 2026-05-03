@@ -13,7 +13,7 @@ export const RSchema = z.object({
     password: z.string().trim().min(6, {
         message: "Must be at Least Six Characters!"
     }),
-    image: z.string().trim().optional().default("")
+    image: z.string().trim().optional()
 });
 
 export const LSchema = z.object({

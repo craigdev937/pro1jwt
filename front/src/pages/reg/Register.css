@@ -1,0 +1,72 @@
+.auth-page {
+    display: grid;
+    place-items: center;
+    min-height: calc(100dvh - 60px);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background blob */
+.auth-deco {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 60% 50% at 50% -10%,
+        color-mix(in oklch, var(--blue) 12%, transparent),
+        transparent
+    );
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 580px;
+    display: grid;
+    gap: 1.5rem;
+    position: relative;
+    /* z-index: 1; */
+}
+
+.auth-card--wide {
+    max-width: 670px;
+}
+
+.auth-card__head {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.auth-card__tag {
+    color: var(--blue);
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.auth-card__title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.auth-card__sub {
+    color: var(--grey);
+    font-size: 0.9rem;
+}
+
+.auth-form {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.auth-form__grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+.auth-form__span {
+    grid-column: 1 / -1;
+}
+
+
+
+
