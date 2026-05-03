@@ -22,5 +22,10 @@ export interface AuthState {
     isAuth: boolean
 };
 
+export interface IAuth {
+    user: IUser,
+    token: string
+};
+
 
 
