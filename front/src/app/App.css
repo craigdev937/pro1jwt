@@ -37,6 +37,13 @@ body {
     margin: 0 auto;
 }
 
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+
 ::-webkit-scrollbar {
     width: 6px
 }
@@ -92,6 +99,58 @@ body {
 
 .form-error::before {
     content: "x20b3";
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn--primary {
+    background: var(--blue);
+    color: var(--coal);
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: color-mix(in oklch, var(--blue) 85%, var(--white));
+    transform: translateY(-1px);
+}
+
+.btn--secondary {
+    background: transparent;
+    color: var(--blue);
+    border-color: color-mix(in oklch, var(--blue) 50%, transparent);
+}
+
+.btn--secondary:hover:not(:disabled) {
+    border-color: var(--blue);
+    background: color-mix(in oklch, var(--pink) 40%, transparent);
+}
+
+.btn--danger {
+    background: transparent;
+    color: var(--pink);
+    border-color: color-mix(in oklch, var(--pink) 10%, transparent);
+}
+
+.btn--full {
+    width: 100%;
 }
 
 .fade-up {

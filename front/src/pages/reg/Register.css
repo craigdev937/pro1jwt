@@ -67,6 +67,54 @@
     grid-column: 1 / -1;
 }
 
+.auth-optional {
+    color: var(--grey);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.auth-img-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.auth-img-preview {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--blue);
+    flex-shrink: 0;
+}
+
+.auth-card__footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--grey);
+    padding-top: 0.5rem;
+    border-top: 1px solid color-mix(in oklch, var(--grey) 15%, transparent);
+}
+
+.auth-card__link {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.auth-card__link:hover {
+    opacity: 0.75;
+}
+
+@container (max-width: 480px) {
+    .auth-form__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 
 
 

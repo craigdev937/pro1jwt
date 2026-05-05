@@ -178,12 +178,12 @@ export const Register = () => {
                     </aside>
 
                     <button 
-                    type="submit"
-                    disabled={isLoading}
-                    className="btn--primary"
-                >
-                    {isLoading ? "Creating account..." : "Create Account"}
-                </button>
+                        type="submit"
+                        disabled={isLoading}
+                        className="btn btn--primary btn--full auth-form__span"
+                    >
+                        {isLoading ? "Creating account..." : "Create Account"}
+                    </button>
                 </form>
 
                 <p className="auth-card__footer">
