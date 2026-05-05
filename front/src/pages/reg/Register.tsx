@@ -13,7 +13,8 @@ export const Register = () => {
     const navigate = useNavigate();
     const dispatch = UAD();
     const isAuth = UAS((state) => state.auth.isAuth);
-    const [regUser, { error, isLoading }] = UserAPI.useRegMutation();
+    const [regUser, { error, 
+        isLoading }] = UserAPI.useRegMutation();
 
     const { register, handleSubmit, watch, 
         formState: { errors } 
@@ -58,15 +59,11 @@ export const Register = () => {
                 className="auth-deco" 
                 aria-hidden
             />
-
             <section className="auth-card auth-card--wide fade-up card"
             >
                 <aside className="auth-card__head">
-                    <div className="auth-card__tag mono">// auth.register()</div>
                     <h1 className="auth-card__title">Create Account</h1>
-                    <p className="auth-card__sub">John the HDQ Team</p>
                 </aside>
-
                 <form 
                     noValidate
                     className="auth-form auth-form__grid"
@@ -165,12 +162,14 @@ export const Register = () => {
                             className={`form-input${errors.image ? "error" : ""}`}
                             {...register("image")}
                         />
-                        <img 
-                            alt="preview"
-                            src={imageVal}
-                            className="auth-img-preview"
-                            onError={() => imgError}
-                        />
+                        {imageVal && (
+                                <img 
+                                alt="preview"
+                                src={imageVal}
+                                className="auth-img-preview"
+                                onError={() => imgError}
+                            />
+                        )}
                         {errors.last && 
                             <span className="form-error">
                                 {errors.image?.message}
@@ -192,7 +191,7 @@ export const Register = () => {
                         to={"/login"}
                         className="auth-card__link"
                     >
-                        Sign In
+                        {" "}Sign In
                     </Link>
                 </p>
             </section>
