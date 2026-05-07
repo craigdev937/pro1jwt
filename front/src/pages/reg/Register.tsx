@@ -47,7 +47,6 @@ export const Register = () => {
         const res = await regUser(data).unwrap();
         dispatch(ACT.setCred({
             user: res.user, 
-            token: res.token, 
             isAuth: true 
         }));
         navigate("/profile");

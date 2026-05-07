@@ -1,25 +1,13 @@
 import { createApi, 
     fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { IData, IUser, IAuth } from "../models/Interfaces";
-import type { RType } from "../validation/Schema";
-import type { RootState } from "./RED";
+import type { IData, IUser, AuthState } from "../models/Interfaces";
+import type { RType, LType } from "../validation/Schema";
 const URL = "http://localhost:9000/api";
 
 export const UserAPI = createApi({
     reducerPath: "UserAPI",
     tagTypes: ["Users"],
-    baseQuery: fetchBaseQuery({
-        baseUrl: `${URL}`,
-        prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState)
-                .auth.token;
-            if (token) headers.set(
-                "Authorization", 
-                `Bearer ${token}`
-            );
-            return headers;
-        },
-    }),
+    baseQuery: fetchBaseQuery({ baseUrl: URL }),
     endpoints: (builder) => ({
         all: builder.query<IData, void>({
             query: () => ({
@@ -39,7 +27,7 @@ export const UserAPI = createApi({
             }),
             providesTags: ["Users"]
         }),
-        reg: builder.mutation<IAuth, RType>({
+        reg: builder.mutation<AuthState, RType>({
             query: (payload) => ({
                 url: `/users/register`,
                 method: "POST",
@@ -47,6 +35,13 @@ export const UserAPI = createApi({
             }),
             invalidatesTags: ["Users"]
         }),
+        log: builder.mutation<AuthState, LType>({
+            query: (payload) => ({
+                url:   `/users/login`,
+                method: "POST",
+                body: payload
+            })
+        })
     })
 });
 

@@ -18,13 +18,12 @@ export interface IData {
 
 export interface AuthState {
     user: IUser | null,
-    token: string | null,
     isAuth: boolean
 };
 
-export interface IAuth {
-    user: IUser,
-    token: string
+export interface ILog {
+    email: string,
+    password: string
 };
 
 
